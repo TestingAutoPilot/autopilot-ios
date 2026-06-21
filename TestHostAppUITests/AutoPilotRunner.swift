@@ -21,16 +21,10 @@ class AutoPilotRunner {
     // MARK: - Plan Loading
 
     func loadPlan() throws -> Plan {
-        // Try bundle resource first
-        if let url = Bundle(for: type(of: self)).url(forResource: "test-all-capabilities", withExtension: "json") {
-            let data = try Data(contentsOf: url)
-            return try JSONDecoder().decode(Plan.self, from: data)
+        guard let url = Bundle(for: type(of: self)).url(forResource: "test-all-capabilities", withExtension: "json") else {
+            throw RunnerError.planNotFound
         }
-
-        // Fallback: relative path from repo
-        let fallbackPath = "/Users/jschwefel/repositories/autopilot/Fixtures/TestHostApp/test-all-capabilities.json"
-        let fallbackURL = URL(fileURLWithPath: fallbackPath)
-        let data = try Data(contentsOf: fallbackURL)
+        let data = try Data(contentsOf: url)
         return try JSONDecoder().decode(Plan.self, from: data)
     }
 
