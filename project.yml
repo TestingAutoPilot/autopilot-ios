@@ -1,0 +1,90 @@
+name: TestHostApp
+options:
+  bundleIdPrefix: com.autopilot
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+targets:
+  TestHostApp:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: TestHostApp
+        excludes:
+          - "**/*.md"
+    resources:
+      - TestHostApp/Assets.xcassets
+    info:
+      path: TestHostApp/Info.plist
+      properties:
+        CFBundleDisplayName: TestHostApp
+        CFBundleIdentifier: com.autopilot.testhostapp
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: Default Configuration
+                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.autopilot.testhostapp
+        SWIFT_VERSION: "5.9"
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+
+  TestHostAppSwiftUI:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: TestHostAppSwiftUI
+        excludes:
+          - "**/*.md"
+    resources:
+      - TestHostAppSwiftUI/Assets.xcassets
+    info:
+      path: TestHostAppSwiftUI/Info.plist
+      properties:
+        CFBundleDisplayName: TestHostAppSwiftUI
+        CFBundleIdentifier: com.autopilot.testhostappswiftui
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.autopilot.testhostappswiftui
+        SWIFT_VERSION: "5.9"
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+
+  TestHostAppUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: TestHostAppUITests
+    resources:
+      - path: ../autopilot/Fixtures/TestHostApp/test-all-capabilities.json
+        optional: true
+    info:
+      path: TestHostAppUITests/Info.plist
+      properties:
+        CFBundleIdentifier: com.autopilot.testhostappuitests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.autopilot.testhostappuitests
+        SWIFT_VERSION: "5.9"
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+        TEST_TARGET_NAME: TestHostApp
+    dependencies:
+      - target: TestHostApp
