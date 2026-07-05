@@ -109,6 +109,8 @@ echo "==> Regenerating project with the team in the environment" >&2
 xcodegen generate
 
 echo "==> Running the plan on the device" >&2
+# xcodebuild refuses to overwrite an existing result bundle — clear a stale one.
+rm -rf TestResults.xcresult
 xcodebuild test \
   -project TestHostApp.xcodeproj \
   -scheme TestHostApp \
