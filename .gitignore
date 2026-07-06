@@ -1,0 +1,14 @@
+# Local signing — NEVER commit a real Apple team id.
+Local.xcconfig
+
+# Build output / user-specific Xcode noise.
+DerivedData/
+*.xcresult
+TestResults.xcresult/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# The .xcodeproj is regenerated from project.yml by `xcodegen generate`; the
+# pbxproj itself is intentionally tracked (CI regenerates it), so it is NOT
+# ignored here — only the per-user noise above is.
+.DS_Store

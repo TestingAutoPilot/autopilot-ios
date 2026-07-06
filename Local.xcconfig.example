@@ -1,0 +1,15 @@
+// On-device code-signing team, for running the plan on a PHYSICAL iPhone.
+//
+// Copy this file to `Local.xcconfig` (which is git-ignored) and set your Apple
+// team id, OR just `export DEVELOPMENT_TEAM=...` in your shell. Either works —
+// scripts/run-on-device.sh reads the env var first, then falls back to this file.
+//
+// Find your team id in Xcode → Settings → Accounts → (your Apple ID) → the
+// team's 10-character ID, or run: xcodebuild -showBuildSettings | grep TEAM
+//
+// A free personal Apple ID team works for on-device testing; its provisioning
+// profile lasts ~7 days (re-run with -allowProvisioningUpdates to refresh).
+//
+// NEVER commit a real team id. The simulator needs none of this.
+
+DEVELOPMENT_TEAM = ABCDE12345
