@@ -128,6 +128,13 @@ struct ArgsJSON: Codable {
     let width: Int?
     let height: Int?
     let mode: String?
+    // Demo args (schema 1.2). Present so a v1.2 demo plan decodes cleanly; the demo
+    // actions (highlight/caption/pace) are SKIPPED on iOS — XCUITest cannot overlay
+    // the app under test, a genuine platform limitation. See AutoPilotRunner's skip.
+    let holdMs: Int?
+    let position: String?
+    let typeMsPerChar: Int?
+    let stepDelayMs: Int?
 }
 
 // MARK: - Assert

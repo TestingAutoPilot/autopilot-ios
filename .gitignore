@@ -12,3 +12,4 @@ TestResults.xcresult/
 # pbxproj itself is intentionally tracked (CI regenerates it), so it is NOT
 # ignored here — only the per-user noise above is.
 .DS_Store
+.claude/
