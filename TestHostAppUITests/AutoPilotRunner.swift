@@ -53,6 +53,15 @@ class AutoPilotRunner {
                 results.append(StepResult(id: stepId, passed: true, skipped: true, message: "not supported on iOS"))
                 continue
             }
+            // Demo actions (schema 1.2) are SKIPPED on iOS: XCUITest cannot draw a
+            // highlight ring / caption banner on the app under test (iOS does not let
+            // one app overlay another) — a genuine platform limitation, so demos are
+            // macOS/web only. A v1.2 plan still runs to completion (skip-don't-branch).
+            if ["highlight", "caption", "pace"].contains(action) {
+                print("skipped: \(stepId) (\(action) is a demo action, not rendered on iOS)")
+                results.append(StepResult(id: stepId, passed: true, skipped: true, message: "demo action; not supported on iOS"))
+                continue
+            }
 
             do {
                 try executeStep(step)
